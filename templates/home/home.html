@@ -1,0 +1,57 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<br>
+<div class="mb-4 bg-dark text-white p-3 rounded" style="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.34807426388524154) 100%), url('https://img.freepik.com/premium-vector/geometric-ethnic-oriental-seamless-pattern-traditional-design-background-carpet-wallpaper-clothing-wrapping-batik-fabric-vector-illustration-embroidery-style_71775-1403.jpg?w=996');">
+  <h1 class="display-4 text-white">Welcome to MUSEO Tu' Agusan; <br> Virtual Edu-Tourism!</h1>
+    <p class="lead">Maintain and Understand the Significant
+        Expression of Our Culture Tu’ Agusan
+    </p>
+  <hr class="my-4">
+  <a class="btn btn-outline-danger btn-lg" href="{% url 'home:about' %}" role="button">Learn more</a>
+    
+</div>
+
+<br>
+
+<h3 class="text-muted mb-3">Categories you might like</h3>
+<div class="row no-gutters">
+  {% for category in categories %}
+  <div class="col-md-4 p-2" >
+    <div class="card d-flex flex-row " style="height:80px">
+      <div class="w-25 bg-dark" style="{{category.bg_css}}">
+<!--    https://cssgradient.io/gradient-backgrounds/    -->
+      </div>
+      <div class="w-75 d-flex justify-content-center align-items-center" >
+          <h4 class="text-muted">{{category}}</h4>
+      </div>
+      <a href="{% url 'home:destination' %}?category={{category}}" class="stretched-link"></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<br>
+<br>
+<h3 class="text-muted mb-3">Featured Destination</h3>
+
+<div class="row">
+{% for featured in featured_destination %}
+    <div class="col-md-4">
+
+      <div class="card mb-4">
+      <img src="{{featured.destination.first_image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p><strong>{{featured.destination.title}}</strong></p>
+        <p class="card-text">{{featured.destination.short_description|safe}}</p>
+        <p class="card-text"><small class="text-muted">{{featured.destination.get_react_count}} Reactions | {{featured.destination.num_comments}} Comments</small></p>
+      <a href="{% url 'home:destination_details' destination_id=featured.destination.getEncryptedID %}" class="stretched-link"></a>
+      </div>
+
+    </div>
+  </div>
+{% endfor %}
+  </div>
+
+{% endblock %}

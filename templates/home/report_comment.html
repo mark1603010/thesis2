@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<br>
+<h3 class="display-4">Report comment</h3>
+<div class="p-3 border rounded bg-light">
+            <div class="d-flex">
+            <div class="flex-grow-1">
+                <strong class="mr-2">{{comment.commenter}}</strong>
+                <small class="text-muted">{{comment.date_created}}</small>
+            </div>
+            </div>
+            <div class="d-flex">
+                {{comment.message}}
+            </div>
+</div>
+
+{% if request.user.is_authenticated and request.user.email_verified %}
+<p class="text-muted mt-4"> Submit Reason </p>
+<form method="post">
+    {% csrf_token %}
+    <textarea class="form-control" name="reason" placeholder="Type your reason here..." required></textarea>
+    <button class="btn btn-primary mt-3 mb-3" type="submit">Submit</button>
+</form>
+{% else %}
+<br>
+    <div class="alert alert-dark">
+        Please verify email to post comment
+    </div>
+{% endif %}
+
+<br>
+
+
+{% endblock %}

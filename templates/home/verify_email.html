@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<br>
+
+{% if user.email_verified %}
+    <div class="alert alert-info">
+        Email verified
+    </div>
+{% endif %}
+
+<br>
+
+
+{% endblock %}

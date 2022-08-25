@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+{% for destination in destinations %}
+    <div class="col-md-3">
+
+      <div class="card mb-4">
+      <img src="{{destination.first_image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p><strong>{{destination.title}}</strong></p>
+        <p class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">{{destination.address}}</p>
+        <p class="card-text"><small class="text-muted">{{destination.num_likes}} Likes | <a href="{% url 'home:destination_details' destination_id=destination.getEncryptedID %}#disqus_thread">0 Comments</a></small></p>
+      <a href="{% url 'home:destination_details' destination_id=destination.getEncryptedID %}" class="stretched-link"></a>
+      </div>
+
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+
+{% endblock %}

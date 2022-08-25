@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<br>
+
+
+<h1 class="text-info">Search destination</h1>
+<hr>
+
+
+{% for destination in destinations %}
+   <div class="card p-3 mb-2 d-flex">
+       <a href="{% url 'home:destination_details' destination_id=destination.getEncryptedID %}"><h4>{{destination}}</h4></a>
+       <div>{{destination.address}}</div>
+        <div class="text-muted"> <small>{{destination.num_likes}} Likes | {{destination.num_comments}} Comments</small> </div>
+   </div>
+{% endfor %}
+
+
+<br>
+
+{% endblock %}

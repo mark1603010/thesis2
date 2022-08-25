@@ -1,0 +1,39 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<br>
+<div class="row no-gutters">
+  {% for category in categories %}
+  <div class="col-md-4 p-2" >
+    <div class="card d-flex flex-row " style="height:80px">
+      <div class="w-25 bg-dark" style="{{category.bg_css}}">
+<!--    https://cssgradient.io/gradient-backgrounds/    -->
+      </div>
+      <div class="w-75 d-flex justify-content-center align-items-center" >
+          <h4 class="text-muted">{{category}}</h4>
+      </div>
+      <a href="{% url 'home:destination' %}?category={{category}}" class="stretched-link"></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
